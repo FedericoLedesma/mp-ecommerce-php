@@ -2,11 +2,11 @@
     $payment_type = $_GET['payment_type'];
     $external_reference = $_GET['external_reference'];
     $collection_id = $_GET['collection_id'];
-   
-   
-        echo "Payment Method:" . $_GET['payment_type'] . "<br>";
-        echo "External Reference:" . $_GET['external_reference'] . "<br>";
-        echo "Payment ID:" . $_GET['collection_id'] . "<br>";
+    $collection_status=$_GET['collection_status'];
+    $preference_id= $_GET['preference_id'];
+    $site_id=$_GET['site_id'];
+    $processing_mode= $_GET['processing_mode'];
+    $merchant_account_id= $_GET['merchant_account_id'];
     
 
 ?>
@@ -94,9 +94,9 @@
                                     </button>
                                     <h3>Pago rechazado</h3>                                    
                                     <?php
-                                        echo "Payment Method:" . $_GET['payment_type'] . "<br>";
-                                        echo "External Reference:" . $_GET['external_reference'] . "<br>";
-                                        echo "Payment ID:" . $_GET['collection_id'] . "<br>";
+                                        echo "Payment Method:" . $payment_type. "<br>";
+                                        echo "External Reference:" . $external_reference . "<br>";
+                                        echo "Payment ID:" . $collection_id . "<br>";
                                     ?>
 
                                 </div>

@@ -2,8 +2,11 @@
     $payment_type = $_GET['payment_type'];
     $external_reference = $_GET['external_reference'];
     $collection_id = $_GET['collection_id'];
-
-
+    $collection_status=$_GET['collection_status'];
+    $preference_id= $_GET['preference_id'];
+    $site_id=$_GET['site_id'];
+    $processing_mode= $_GET['processing_mode'];
+    $merchant_account_id= $_GET['merchant_account_id'];
 ?>
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
