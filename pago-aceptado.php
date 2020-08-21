@@ -10,7 +10,7 @@
     
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
-
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
 
