@@ -86,7 +86,9 @@
                             <h2>El pago se realizo correctamente</h2>
                             <h3>Datos Recibidos</h1>
                             <h3>Payment type</h3>
-                            <?php echo $payment_type;?>                          
+                            <?php echo $payment_type;?>       
+                            <h3>Preference id</h3>
+                            <?php echo $preference_id;?>                          
                             <h3>External reference</h3>
                             <?php echo $external_reference;?>   
                             <h3>Collection id</h3>
