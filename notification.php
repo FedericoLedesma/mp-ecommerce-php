@@ -1,20 +1,14 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $myfile = fopen("info1.txt", "w") or die("Unable to open file!");
-        /*
-        $data = array(
-            "id" => $_POST['id'],
-            "type" => $_POST['type']
-        );
-        $txt = json_encode($data);
-        */
+       
         $txt = file_get_contents('php://input');
         fwrite($myfile, $txt);
         
         fclose($myfile);
         
         $myfile2 = fopen("info2.txt", "w") or die("Unable to open file!");
-        $txt2 = "Entro al POST y paso despues de escribir el primer archivo.";
+        $txt2 = "Entro al POST.";
         fwrite($myfile2, $txt2);
         fclose($myfile2);
     }
