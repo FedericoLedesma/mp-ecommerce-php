@@ -1,20 +1,33 @@
 <?php
-
-    require_once 'vendor/autoload.php';
-
-    MercadoPago\SDK::setAccessToken("APP_USR-8058997674329963-062418-89271e2424bb1955bc05b1d7dd0977a8-592190948");
-
-    $entityBody = file_get_contents('php://input');
-    
-    if(!isset($entityBody)){
-        $fichero = './webhook.json';
-
-        $actual = file_get_contents($fichero);
-    
-        $actual .= $entityBody;
-    
-        file_put_contents($fichero, $actual);
-    } else{
-        header('Location: https://federledesma-mp-ecommerce-php.herokuapp.com/');
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $myfile = fopen("info1.txt", "w") or die("Unable to open file!");
+        /*
+        $data = array(
+            "id" => $_POST['id'],
+            "type" => $_POST['type']
+        );
+        $txt = json_encode($data);
+        */
+        $txt = file_get_contents('php://input');
+        fwrite($myfile, $txt);
+        
+        fclose($myfile);
+        
+        $myfile2 = fopen("info2.txt", "w") or die("Unable to open file!");
+        $txt2 = "Entro al POST y paso despues de escribir el primer archivo.";
+        fwrite($myfile2, $txt2);
+        fclose($myfile2);
     }
-?>
+    else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $myfile = fopen("info2.txt", "w") or die("Unable to open file!");
+        $txt = json_encode($_GET);
+        fwrite($myfile, $txt);
+        fclose($myfile);
+    }
+
+    $myfile = fopen("info.txt", "w") or die("Unable to open file!");
+    $txt = json_encode($_REQUEST);
+    fwrite($myfile, $txt);
+    fclose($myfile);
+
+    http_response_code(200);
