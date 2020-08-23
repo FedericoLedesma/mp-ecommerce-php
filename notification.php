@@ -1,6 +1,6 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $myfile = fopen("info1.txt", "w") or die("Unable to open file!");
+        $myfile = fopen("info1.txt", "a") or die("Unable to open file!");
        
         $txt = file_get_contents('php://input');
         fwrite($myfile, $txt);
@@ -13,13 +13,13 @@
         fclose($myfile2);
     }
     else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $myfile = fopen("info2.txt", "w") or die("Unable to open file!");
+        $myfile = fopen("info2.txt", "a") or die("Unable to open file!");
         $txt = json_encode($_GET);
         fwrite($myfile, $txt);
         fclose($myfile);
     }
 
-    $myfile = fopen("info.txt", "w") or die("Unable to open file!");
+    $myfile = fopen("info.txt", "a") or die("Unable to open file!");
     $txt = json_encode($_REQUEST);
     fwrite($myfile, $txt);
     fclose($myfile);
