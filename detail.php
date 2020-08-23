@@ -1,73 +1,69 @@
 <?php
-    if (isset($_POST['title'])) {
-        require_once "vendor/autoload.php";
-        //Credenciales
-        MercadoPago\SDK::setAccessToken("APP_USR-8058997674329963-062418-89271e2424bb1955bc05b1d7dd0977a8-592190948");
-        MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+    require_once "vendor/autoload.php";
+    //Credenciales
+    MercadoPago\SDK::setAccessToken("APP_USR-8058997674329963-062418-89271e2424bb1955bc05b1d7dd0977a8-592190948");
+    MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
-        $preference = new MercadoPago\Preference();
+    $preference = new MercadoPago\Preference();
 
-    
-        //Creo un payer
-        $payer = new MercadoPago\Payer();
-        $payer->name = "Lalo";
-        $payer->surname = "Landa";
-        $payer->email = "test_user_63274575@testuser.com";
-        $payer->phone = array(
-        "area_code" => "11",
-        "number" => "22223333"
-        );
 
-        $payer->address = array(
-        "street_name" => "False",
-        "street_number" => 123,
-        "zip_code" => "1111"
-        );
+    //Creo un payer
+    $payer = new MercadoPago\Payer();
+    $payer->name = "Lalo";
+    $payer->surname = "Landa";
+    $payer->email = "test_user_63274575@testuser.com";
+    $payer->phone = array(
+    "area_code" => "11",
+    "number" => "22223333"
+    );
 
-        $preference->payer = $payer;
+    $payer->address = array(
+    "street_name" => "False",
+    "street_number" => 123,
+    "zip_code" => "1111"
+    );
 
-        $preference->external_reference = "federledesma10@gmail.com";
+    $preference->payer = $payer;
 
-        //Creo el item en la preferencia
-        $item = new MercadoPago\Item();
-        $item->id = "1234";
-        $item->title = $_POST['title'];
-        $item->description = 'Dispositivo móvil de Tienda e-commerce';
-        $item->picture_url = 'https://federledesma-mp-ecommerce-php.herokuapp.com/'.$_POST['img'];
-        $item->quantity = $_POST['unit'];
-        $item->unit_price = $_POST['price'];
+    $preference->external_reference = "federledesma10@gmail.com";
 
-        $preference->items = array($item);
+    //Creo el item en la preferencia
+    $item = new MercadoPago\Item();
+    $item->id = "1234";
+    $item->title = $_POST['title'];
+    $item->description = 'Dispositivo móvil de Tienda e-commerce';
+    $item->picture_url = 'https://federledesma-mp-ecommerce-php.herokuapp.com/'.$_POST['img'];
+    $item->quantity = $_POST['unit'];
+    $item->unit_price = $_POST['price'];
 
-        //Excluyo metodos de pago
-        $preference->payment_methods = array(
-            "excluded_payment_methods" => array(
-                array("id" => "amex")
-            ),
-            "excluded_payment_types" => array(
-                array("id" => "atm")
-            ),
-            "installments" => 6
-        );
+    $preference->items = array($item);
 
-        //Url para el webhook
-        $preference->notification_url = "https://federledesma-mp-ecommerce-php.herokuapp.com/notification.php";
-    
-        //Back url's correspondientes
-        $preference->back_urls= array(
-            "success" => "https://federledesma-mp-ecommerce-php.herokuapp.com/pago-aceptado.php",
-            "failure" => "https://federledesma-mp-ecommerce-php.herokuapp.com/pago-cancelado.php",
-            "pending" => "https://federledesma-mp-ecommerce-php.herokuapp.com/pago-pendiente.php"
-        );
+    //Excluyo metodos de pago
+    $preference->payment_methods = array(
+        "excluded_payment_methods" => array(
+            array("id" => "amex")
+        ),
+        "excluded_payment_types" => array(
+            array("id" => "atm")
+        ),
+        "installments" => 6
+    );
 
-        //Auto return
-        $preference->auto_return = "approved";
+    //Url para el webhook
+    $preference->notification_url = "https://federledesma-mp-ecommerce-php.herokuapp.com/notification.php";
 
-        $preference->save();
-    }
-    else{
-        header ('Location: https://koreanoniu-mp-ecommerce-php.herokuapp.com/');
-    }
+    //Back url's correspondientes
+    $preference->back_urls= array(
+        "success" => "https://federledesma-mp-ecommerce-php.herokuapp.com/pago-aceptado.php",
+        "failure" => "https://federledesma-mp-ecommerce-php.herokuapp.com/pago-cancelado.php",
+        "pending" => "https://federledesma-mp-ecommerce-php.herokuapp.com/pago-pendiente.php"
+    );
+
+    //Auto return
+    $preference->auto_return = "approved";
+
+    $preference->save();
+   
 ?>
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
