@@ -1,7 +1,7 @@
 <?php
     require_once "vendor/autoload.php";
     //Credenciales
-    MercadoPago\SDK::setAccessToken("APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398");
+    MercadoPago\SDK::setAccessToken("APP_USR-8058997674329963-062418-89271e2424bb1955bc05b1d7dd0977a8-592190948");
     MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 
     $preference = new MercadoPago\Preference();
@@ -197,13 +197,13 @@
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                   <!-- <a href=""><button type="submit" class="mercadopago-button" formmethod="post">Pagar</button></a>-->
-                                    <form action="/procesar-pago" method="POST">
+                                    <a href="<?php echo $preference->init_point; ?>"><button type="submit" class="mercadopago-button" formmethod="post">Pagar</button></a>
+                                 <!--   <form action="/procesar-pago" method="POST">
                                         <script
                                         src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-                                        data-preference-id="<?php echo $preference->id; ?>">
+                                        data-preference-id="">
                                         </script>
-                                    </form>
+                                    </form>-->
                                 </div>
                             </div>
                         </div>
